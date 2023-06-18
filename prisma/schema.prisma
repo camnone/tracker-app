@@ -18,7 +18,7 @@ model User {
   region       String
   ip           String
   app_id       String
-  user_id      String @unique
+  user_id      String   @unique
   goToLinkDate DateTime @default(now())
 }
 
