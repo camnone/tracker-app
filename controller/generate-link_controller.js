@@ -38,7 +38,7 @@ export const generateLink = expressAsyncHandler(async (req, res) => {
 const redirect = async (res, geek_params) => {
   try {
     res.redirect(
-      `https://play.google.com/store/apps/details?id=${geek_params.g_app}?referrer=g_pid=${geek_params.g_pid}?g_c=${geek_params.g_c}?g_adset=${geek_params.g_adset}?userID=${geek_params.userID}`
+      `https://play.google.com/store/apps/details?id=${geek_params.g_app}&referrer=g_pid=${geek_params.g_pid}?g_c=${geek_params.g_c}?g_adset=${geek_params.g_adset}?userID=${geek_params.userID}`
     );
     res.status(200).send(geek_params);
   } catch (e) {
