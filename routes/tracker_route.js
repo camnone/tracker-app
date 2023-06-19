@@ -1,5 +1,5 @@
 import express from 'express'
-import { generateLink } from '../controller/generate-link_controller.js';
+import {generateLink } from '../controller/generate-link_controller.js';
 import { reEntryCheckUser } from '../controller/re-entry-check-user_controller.js';
 
 

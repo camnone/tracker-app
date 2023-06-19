@@ -1,18 +1,14 @@
 import express from "express";
 import cors from "cors";
 import trackerRoute from "./routes/tracker_route.js";
-
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
 const main = async () => {
   const app = express();
-
+ 
   app.use(cors());
-
-
-  app.options('*', cors());
 
   app.use(express.json());
 
@@ -33,3 +29,5 @@ main()
     await prisma.$disconnect();
     process.exit(1);
   });
+
+
