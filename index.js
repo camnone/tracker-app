@@ -14,7 +14,7 @@ const main = async () => {
 
   app.use("/api/tracker", trackerRoute);
 
-  const PORT = 80;
+  const PORT = 3000;
   app.listen(PORT, () => {
     console.log("Sever running");
   });
