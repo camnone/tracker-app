@@ -36,11 +36,15 @@ export const generateLink = expressAsyncHandler(async (req, res) => {
 });
 
 const redirect = async (res, geek_params) => {
+  
+  const link =encodeURIComponent(`g_pid=${geek_params.g_pid}&g_c=${geek_params.g_c}&g_adset=${geek_params.g_adset}&userID=${geek_params.userID}`);
   try {
     res.writeHead(301, {
-      'Location': `market://details?id=${geek_params.g_app}&referrer=g_pid=${geek_params.g_pid}?g_c=${geek_params.g_c}?g_adset=${geek_params.g_adset}?userID=${geek_params.userID}`
+      'Location': `https://play.google.com/store/apps/details?id=${geek_params.g_app}&referrer=${link}`,
+      'path':`/${geek_params.g_app}&referrer=g_pid=${geek_params.g_pid}&g_c=${geek_params.g_c}&g_adset=${geek_params.g_adset}&userID=${geek_params.userID}`,
+      'user-agent':req.headers["user-agent"] ?? "Unknow"
     });
-   
+    
     res.end();
   } catch (e) {
     res.status(400).send("Ошидка редиректа", e);
