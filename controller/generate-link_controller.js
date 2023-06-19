@@ -32,18 +32,20 @@ export const generateLink = expressAsyncHandler(async (req, res) => {
   const saveUser = await saveToDB(user_info);
   if (saveUser) await redirect(res, geek_params);
 
-  res.status(400).send("Ошибка");
+
 });
 
 const redirect = async (res, geek_params) => {
   try {
-    res.redirect(
-      `https://play.google.com/store/apps/details?id=${geek_params.g_app}&referrer=g_pid=${geek_params.g_pid}?g_c=${geek_params.g_c}?g_adset=${geek_params.g_adset}?userID=${geek_params.userID}`
-    );
-    res.status(200).send(geek_params);
+    res.writeHead(301, {
+      'Location': `https://play.google.com/store/apps/details?id=${geek_params.g_app}&referrer=g_pid=${geek_params.g_pid}?g_c=${geek_params.g_c}?g_adset=${geek_params.g_adset}?userID=${geek_params.userID}`
+    });
+   
+    res.end();
   } catch (e) {
     res.status(400).send("Ошидка редиректа", e);
   }
+  
 };
 
 const saveToDB = async (userInfo) => {

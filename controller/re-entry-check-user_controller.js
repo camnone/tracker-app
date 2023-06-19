@@ -34,7 +34,6 @@ export const reEntryCheckUser = expressAsyncHandler( async (req,res) => {
     if(isExistUser){
         res.status(400).send('пользователь уже добавлен');
     }
-
     const successUser = await prisma.successfulUser.create({
         data:user
     })
