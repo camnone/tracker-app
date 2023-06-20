@@ -37,14 +37,9 @@ export const generateLink = expressAsyncHandler(async (req, res) => {
 
 const redirect = async (res, geek_params) => {
   
-  const link =encodeURIComponent(`g_pid=${geek_params.g_pid}&g_c=${geek_params.g_c}&g_adset=${geek_params.g_adset}&userID=${geek_params.userID}`);
+  const link = encodeURIComponent(`g_pid=${geek_params.g_pid}&g_c=${geek_params.g_c}&g_adset=${geek_params.g_adset}&userID=${geek_params.userID}`);
   try {
-    res.writeHead(301, {
-      'Location': `https://play.google.com/store/apps/details?id=${geek_params.g_app}&referrer=${link}`,
-      'path':`/${geek_params.g_app}&referrer=g_pid=${geek_params.g_pid}&g_c=${geek_params.g_c}&g_adset=${geek_params.g_adset}&userID=${geek_params.userID}`,
-    });
-    
-    res.end();
+    res.redirect(`market://details?id=${geek_params.g_app}&referrer=${link}`)
   } catch (e) {
     res.status(400).send("Ошидка редиректа", e);
   }
